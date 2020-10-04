@@ -47,7 +47,6 @@
 
     <script src="https://static.line-scdn.net/liff/edge/versions/2.4.1/sdk.js"></script>
     <script>
-      const liff = window.liff
       function createUniversalLink() {}
 
       async function shareMsg() {}
@@ -69,18 +68,18 @@
       async function getUserProfile() {}
 
       function getEnvironment() {
-        document.querySelector('.os').append(liff.getOS())
-        document.querySelector('.language').append(liff.getLanguage())
-        document.querySelector('.version').append(liff.getVersion())
-        document.querySelector('.accessToken').append(liff.getAccessToken())
-        document.querySelector('.isInClient').append(liff.isInClient())
+        document.querySelector('#os').append(liff.getOS())
+        document.querySelector('#language').append(liff.getLanguage())
+        document.querySelector('#version').append(liff.getVersion())
+        document.querySelector('#accessToken').append(liff.getAccessToken())
+        document.querySelector('#isInClient').append(liff.isInClient())
 
         if (liff.isInClient()) {
-          document.querySelector('.btnLogOut').style.display = 'none'
+          document.querySelector('#btnLogOut').style.display = 'none'
         } else {
-          document.querySelector('.btnMsg').style.display = 'none'
-          document.querySelector('.btnScanCode').style.display = 'none'
-          document.querySelector('.btnClose').style.display = 'none'
+          document.querySelector('#btnMsg').style.display = 'none'
+          document.querySelector('#btnScanCode').style.display = 'none'
+          document.querySelector('#btnClose').style.display = 'none'
         }
       }
 
