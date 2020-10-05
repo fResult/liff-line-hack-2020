@@ -7,9 +7,11 @@
       content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
     />
     <title>My LIFF app</title>
-<!--    <link rel="stylesheet" href="css/style.css" media="all" />-->
+    <!--    <link rel="stylesheet" href="css/style.css" media="all" />-->
     <script>
-      document.write(`<link rel="stylesheet" href="css/style.css?cache='${new Date().getTime()}'" media="all">`)
+      document.write(
+        `<link rel="stylesheet" href="css/style.css?cache='${new Date().getTime()}'" media="all">`
+      )
     </script>
   </head>
   <body>
@@ -87,7 +89,7 @@
         document.querySelector('#displayName').append(profile.displayName)
         document
           .querySelector('#decodedIDToken')
-          .append(profile.getDecodedIDToken().email)
+          .append(profile?.getDecodedIDToken()?.email)
       }
 
       function getEnvironment() {
