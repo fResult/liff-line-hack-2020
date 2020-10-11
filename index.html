@@ -70,6 +70,7 @@
       function openWindow() {}
 
       async function getFriendship() {
+        alert('hello')
         const friendship = await liff.getFriendship()
         alert('isFriendship' + friendship.friendFlag)
         document.querySelector('#friendship').append(friendship.friendFlag)
@@ -98,6 +99,7 @@
       }
 
       function getContext() {
+        alert('getCtx')
         document.querySelector('#type').append(liff.getContext().type)
         document.querySelector('#viewType').append(liff.getContext().viewType)
         document.querySelector('#utouId').append(liff.getContext().utouId)
