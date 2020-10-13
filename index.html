@@ -45,7 +45,7 @@
     <button onclick="openWindow()">Open Window</button>
     <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
     <button id="btnLogOut" onclick="logOut()">Log Out</button>
-    <button id="btnClose" onclick="closed()">Close</button>
+    <button id="btnClose" onclick="close()">Close</button>
 
     <!-- <script src="js/vconsole.min.js"></script> -->
     <!-- <script>
@@ -61,8 +61,8 @@
 
       function logOut() {}
 
-      function closed() {
-        liff.close()
+      function close() {
+        liff.closeWindow()
       }
 
       async function scanCode() {
