@@ -44,7 +44,7 @@
     <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
     <button onclick="openWindow()">Open Window</button>
     <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
-    <button id="btnLogOut" onclick="logOut()">Log Out</button>
+    <button id="btnLogOut" onclick="logout()">Log Out</button>
     <button id="btnClose" onclick="closeWindow()">Close</button>
 
     <!-- <script src="js/vconsole.min.js"></script> -->
@@ -59,7 +59,10 @@
 
       async function shareMsg() {}
 
-      function logOut() {}
+      function logout() {
+        liff.logout()
+        window.location.reload()
+      }
 
       function closeWindow() {
         liff.closeWindow()
