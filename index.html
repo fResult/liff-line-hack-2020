@@ -65,7 +65,10 @@
         liff.close()
       }
 
-      async function scanCode() {}
+      async function scanCode() {
+        const result = liff.scanCode()
+        document.querySelector('#scanCode').append(result.value)
+      }
 
       function openWindow() {
         liff.openWindow({
