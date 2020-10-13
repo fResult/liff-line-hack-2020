@@ -91,18 +91,22 @@
 
       async function sendMsg() {
         if (liff.getContext().type !== 'none') {
-          await liff.sendMessages([
-            {
-              type: 'sticker',
-              stickerId: 1,
-              packageId: 1
-            },
-            {
-              type: 'text',
-              text: 'คร่อกกกกกกก zZzZzZzZ'
-            }
-          ])
-          alert('Message is sent')
+          try {
+            await liff.sendMessages([
+              {
+                type: 'sticker',
+                stickerId: 1,
+                packageId: 1
+              },
+              {
+                type: 'text',
+                text: 'คร่อกกกกกกก zZzZzZzZ'
+              }
+            ])
+            liff.closeWindow()
+          } catch (err) {
+            alert('❌ Error, ' + err.message)
+          }
         }
       }
 
