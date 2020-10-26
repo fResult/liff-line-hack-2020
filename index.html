@@ -1,182 +1,184 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
-    />
-    <title>My LIFF</title>
-    <!--    <link rel="stylesheet" href="css/style.css" media="all" />-->
-    <script>
-      document.write(
-        `<link rel="stylesheet" href="css/style.css?cache='${new Date().getTime()}'" media="all">`
-      )
-    </script>
-  </head>
-  <body>
-    <p id="os"><b>OS: </b></p>
-    <p id="language"><b>Language: </b></p>
-    <p id="version"><b>Version: </b></p>
-    <p id="isInClient"><b>isInClient: </b></p>
-    <p id="accessToken"><b>AccessToken: </b></p>
-    <img id="pictureUrl" />
+<head>
+  <meta charset="UTF-8" />
+  <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+  />
+  <title>My LIFF</title>
+  <!--    <link rel="stylesheet" href="css/style.css" media="all" />-->
+  <script>
+    document.write(
+      `<link rel="stylesheet" href="css/style.css?cache='${new Date().getTime()}'" media="all">`
+    )
+  </script>
+</head>
+<body>
+<p id="os"><b>OS: </b></p>
+<p id="language"><b>Language: </b></p>
+<p id="version"><b>Version: </b></p>
+<p id="isInClient"><b>isInClient: </b></p>
+<p id="accessToken"><b>AccessToken: </b></p>
+<img id="pictureUrl" />
 
-    <p id="userId"><b>userId: </b></p>
-    <p id="displayName"><b>displayName: </b></p>
-    <p id="statusMessage"><b>statusMessage: </b></p>
-    <p id="decodedIDToken"><b>email: </b></p>
+<p id="userId"><b>userId: </b></p>
+<p id="displayName"><b>displayName: </b></p>
+<p id="statusMessage"><b>statusMessage: </b></p>
+<p id="decodedIDToken"><b>email: </b></p>
 
-    <p id="type"><b>type: </b></p>
-    <p id="viewType"><b>viewType: </b></p>
-    <p id="utouId"><b>utouId: </b></p>
-    <p id="roomId"><b>roomId: </b></p>
-    <p id="groupId"><b>groupId: </b></p>
+<p id="type"><b>type: </b></p>
+<p id="viewType"><b>viewType: </b></p>
+<p id="utouId"><b>utouId: </b></p>
+<p id="roomId"><b>roomId: </b></p>
+<p id="groupId"><b>groupId: </b></p>
 
-    <p id="friendship"><b>isFriendship: </b></p>
-    <p id="scanCode"><b>Code: </b></p>
-    <p id="isLoggedIn"><b>isLoggedIn: </b></p>
-    <p id="universalLink1"><b>Universal Link: </b></p>
-    <p id="universalLink2"><b>Universal Link with Query params: </b></p>
-    <p><a href="liff/path/?param=9">Link to Path</a></p>
+<p id="friendship"><b>isFriendship: </b></p>
+<p id="scanCode"><b>Code: </b></p>
+<p id="isLoggedIn"><b>isLoggedIn: </b></p>
+<p id="universalLink1"><b>Universal Link: </b></p>
+<p id="universalLink2"><b>Universal Link with Query params: </b></p>
+<p><a href="liff/path/?param=9">Link to Path</a></p>
 
-    <button id="btnMsg" onclick="sendMsg()">Send Message</button>
-    <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
-    <button onclick="openWindow()">Open Window</button>
-    <button id="btnScanCode" onclick="scanCode()">Scan QR Code</button>
-    <button id="btnLogOut" onclick="logout()">Log Out</button>
-    <button id="btnClose" onclick="closeWindow()">Close</button>
+<button id="btnMsg" onclick="sendMsg()">Send Message</button>
+<button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
+<button onclick="openWindow()">Open Window</button>
+<button id="btnScanCode" onclick="scanCode()">Scan QR Code</button>
+<button id="btnLogOut" onclick="logout()">Log Out</button>
+<button id="btnClose" onclick="closeWindow()">Close</button>
 
-    <!-- <script src="js/vconsole.min.js"></script> -->
-    <!-- <script>
-    var vConsole = new VConsole()
-    console.log("Hello World!")
-  </script> -->
+<!-- <script src="js/vconsole.min.js"></script> -->
+<!-- <script>
+var vConsole = new VConsole()
+console.log("Hello World!")
+</script> -->
 
-    <script src="https://static.line-scdn.net/liff/edge/versions/2.4.1/sdk.js"></script>
-    <script>
-      const messages = [
-        { type: 'sticker', stickerId: 1, packageId: 1 },
-        { type: 'text', text: 'คร่อกกกกกกก zZzZzZzZ' }
-      ]
+<script src="https://static.line-scdn.net/liff/edge/versions/2.4.1/sdk.js"></script>
+<script>
+  const messages = [
+    { type: 'sticker', stickerId: 1, packageId: 1 },
+    { type: 'text', text: 'คร่อกกกกกกก zZzZzZzZ' }
+  ]
 
-      function createUniversalLink() {
-        const link1 = liff.permanentLink.createUrl()
-        document.getElementById('universalLink1').append(link1)
+  function createUniversalLink() {
+    const link1 = liff.permanentLink.createUrl()
+    document.getElementById('universalLink1').append(link1)
 
-        liff.permanentLink.setExtraQueryParam('param=9')
-        const link2 = liff.permanentLink.createUrl()
-        document.getElementById('universalLink2').append(link2)
+    liff.permanentLink.setExtraQueryParam('param=9')
+    const link2 = liff.permanentLink.createUrl()
+    document.getElementById('universalLink2').append(link2)
+  }
+
+  async function shareMsg() {
+    await liff.shareTargetPicker([
+      {
+        type: 'text',
+        text: `ข้อความต่อไปนี้ถูกส่งด้วย https://bit.ly/311F1Dt (ทดสอบ feature ShareTargetPicker บน Line Frontend Framework)`
+      },
+      ...messages
+    ])
+  }
+
+  function logout() {
+    liff.logout()
+    window.location.reload()
+  }
+
+  function closeWindow() {
+    liff.closeWindow()
+  }
+
+  async function scanCode() {
+    const result = await liff.scanCode()
+
+    const codeElem = document.querySelector('#scanCode')
+    codeElem.innerHTML = '<b>Code: </b>'
+    alert('result value ' + result.value)
+    codeElem.append(result.value ? result.value : 'โปรด Scan QR Code ก่อน')
+  }
+
+  function openWindow() {
+    liff.openWindow({
+      url: 'https://fResult.dev',
+      external: true
+    })
+  }
+
+  async function getFriendship() {
+    const friendship = await liff.getFriendship()
+    document.querySelector('#friendship').append(friendship.friendFlag)
+    if (!friendship.friendFlag) {
+      if (confirm('คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน ต้องการเพิ่มเลยไหม?')) {
+        window.location = 'https://fResult.dev'
       }
+    }
+  }
 
-      async function shareMsg() {
-        await liff.shareTargetPicker([
-          {
-            type: 'text',
-            text: `ข้อความต่อไปนี้ถูกส่งด้วย https://bit.ly/311F1Dt (ทดสอบ feature ShareTargetPicker บน Line Frontend Framework)`
-          },
-          ...messages
-        ])
-      }
-
-      function logout() {
-        liff.logout()
-        window.location.reload()
-      }
-
-      function closeWindow() {
+  async function sendMsg() {
+    if (liff.getContext().type !== 'none') {
+      try {
+        await liff.sendMessages(messages)
         liff.closeWindow()
+      } catch (err) {
+        alert('❌ Error, ' + err.message)
       }
+    }
+  }
 
-      async function scanCode() {
-        const result = await liff.scanCode()
+  function getContext() {
+    document.querySelector('#type').append(liff.getContext().type)
+    document.querySelector('#viewType').append(liff.getContext().viewType)
+    document.querySelector('#utouId').append(liff.getContext().utouId)
+    document.querySelector('#roomId').append(liff.getContext().roomId)
+    document.querySelector('#groupId').append(liff.getContext().groupId)
+  }
 
-        const codeElem = document.querySelector('#scanCode')
-          codeElem.innerText = ''
-          codeElem.append(result.value && 'โปรด Scan QR Code ก่อน')
-      }
+  async function getUserProfile() {
+    try {
+      const profile = await liff.getProfile()
+      document.querySelector('#pictureUrl').src = profile.pictureUrl
+      document.querySelector('#userId').append(profile.userId)
+      document.querySelector('#statusMessage').append(profile.statusMessage)
+      document.querySelector('#displayName').append(profile.displayName)
+      document
+        .querySelector('#decodedIDToken')
+        .append(liff.getDecodedIDToken().email)
+    } catch (err) {
+      alert('❌ Error: ' + err.message)
+    }
+  }
 
-      function openWindow() {
-        liff.openWindow({
-          url: 'https://fResult.dev',
-          external: true
-        })
-      }
+  function getEnvironment() {
+    document.querySelector('#os').append(liff.getOS())
+    document.querySelector('#language').append(liff.getLanguage())
+    document.querySelector('#version').append(liff.getVersion())
+    document.querySelector('#accessToken').append(liff.getAccessToken())
+    document.querySelector('#isInClient').append(liff.isInClient())
 
-      async function getFriendship() {
-        const friendship = await liff.getFriendship()
-        document.querySelector('#friendship').append(friendship.friendFlag)
-        if (!friendship.friendFlag) {
-          if (confirm('คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน ต้องการเพิ่มเลยไหม?')) {
-            window.location = 'https://fResult.dev'
-          }
-        }
-      }
+    if (liff.isInClient()) {
+      document.querySelector('#btnLogOut').style.display = 'none'
+    } else {
+      document.querySelector('#btnMsg').style.display = 'none'
+      document.querySelector('#btnScanCode').style.display = 'none'
+      document.querySelector('#btnClose').style.display = 'none'
+    }
+  }
 
-      async function sendMsg() {
-        if (liff.getContext().type !== 'none') {
-          try {
-            await liff.sendMessages(messages)
-            liff.closeWindow()
-          } catch (err) {
-            alert('❌ Error, ' + err.message)
-          }
-        }
-      }
+  async function main() {
+    await liff.init({ liffId: '1655038107-AXo6xwO3' })
+    document.querySelector('#isLoggedIn').append(liff.isLoggedIn())
+    if (liff.isLoggedIn()) {
+      getEnvironment()
+      getUserProfile()
+      getContext()
+      getFriendship()
+      createUniversalLink()
+    } else {
+      liff.login()
+    }
+  }
 
-      function getContext() {
-        document.querySelector('#type').append(liff.getContext().type)
-        document.querySelector('#viewType').append(liff.getContext().viewType)
-        document.querySelector('#utouId').append(liff.getContext().utouId)
-        document.querySelector('#roomId').append(liff.getContext().roomId)
-        document.querySelector('#groupId').append(liff.getContext().groupId)
-      }
-
-      async function getUserProfile() {
-        try {
-          const profile = await liff.getProfile()
-          document.querySelector('#pictureUrl').src = profile.pictureUrl
-          document.querySelector('#userId').append(profile.userId)
-          document.querySelector('#statusMessage').append(profile.statusMessage)
-          document.querySelector('#displayName').append(profile.displayName)
-          document
-            .querySelector('#decodedIDToken')
-            .append(liff.getDecodedIDToken().email)
-        } catch (err) {
-          alert('❌ Error: ' + err.message)
-        }
-      }
-
-      function getEnvironment() {
-        document.querySelector('#os').append(liff.getOS())
-        document.querySelector('#language').append(liff.getLanguage())
-        document.querySelector('#version').append(liff.getVersion())
-        document.querySelector('#accessToken').append(liff.getAccessToken())
-        document.querySelector('#isInClient').append(liff.isInClient())
-
-        if (liff.isInClient()) {
-          document.querySelector('#btnLogOut').style.display = 'none'
-        } else {
-          document.querySelector('#btnMsg').style.display = 'none'
-          document.querySelector('#btnScanCode').style.display = 'none'
-          document.querySelector('#btnClose').style.display = 'none'
-        }
-      }
-
-      async function main() {
-        await liff.init({ liffId: '1655038107-AXo6xwO3' })
-        document.querySelector('#isLoggedIn').append(liff.isLoggedIn())
-        if (liff.isLoggedIn()) {
-          getEnvironment()
-          getUserProfile()
-          getContext()
-          getFriendship()
-          createUniversalLink()
-        } else {
-          liff.login()
-        }
-      }
-      main()
-    </script>
-  </body>
+  main()
+</script>
+</body>
 </html>
