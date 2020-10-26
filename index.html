@@ -138,7 +138,7 @@
           document.querySelector('#displayName').append(profile.displayName)
           document
             .querySelector('#decodedIDToken')
-            .append(liff.getDecodedIDToken().email())
+            .append(liff.getDecodedIDToken().email)
         } catch (err) {
           alert('❌ Error: ' + err.message)
         }
