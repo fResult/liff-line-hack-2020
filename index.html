@@ -34,7 +34,7 @@
 <p id="groupId"><b>groupId: </b></p>
 
 <p id="friendship"><b>isFriendship: </b></p>
-<p id="scanCode"><b>Code: </b></p>
+<p id="scanCode"><b>Code: กรุณาสแกนคิวอาร์โค้ด เพื่อแสดง</b></p>
 <p id="isLoggedIn"><b>isLoggedIn: </b></p>
 <p id="universalLink1"><b>Universal Link: </b></p>
 <p id="universalLink2"><b>Universal Link with Query params: </b></p>
@@ -93,8 +93,7 @@ console.log("Hello World!")
 
     const codeElem = document.querySelector('#scanCode')
     codeElem.innerHTML = '<b>Code: </b>'
-    alert('result value ' + result.value)
-    codeElem.append(result.value ? result.value : 'โปรด Scan QR Code ก่อน')
+    codeElem.append(result.value)
   }
 
   function openWindow() {
