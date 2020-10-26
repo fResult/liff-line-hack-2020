@@ -15,7 +15,6 @@ p {
   width: 12%;
   display: -moz-box;
   display: -webkit-box;
-  display: box;
   -moz-box-pack: center;
   -moz-box-align: center;
   -webkit-box-pack: center;
