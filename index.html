@@ -130,7 +130,7 @@
         document.querySelector('#displayName').append(profile.displayName)
         document
           .querySelector('#decodedIDToken')
-          .append(profile?.getDecodedIDToken()?.email)
+          .append(profile.getDecodedIDToken().email)
       }
 
       function getEnvironment() {
