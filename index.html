@@ -43,7 +43,7 @@
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
     <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
     <button onclick="openWindow()">Open Window</button>
-    <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
+    <button id="btnScanCode" onclick="scanCode()">Scan QR Code</button>
     <button id="btnLogOut" onclick="logout()">Log Out</button>
     <button id="btnClose" onclick="closeWindow()">Close</button>
 
@@ -90,7 +90,7 @@
 
       async function scanCode() {
         const result = await liff.scanCode()
-        document.querySelector('#scanCode').append(result.value)
+        document.querySelector('#scanCode').append(result.value && 'โปรด Scan QR Code ก่อน')
       }
 
       function openWindow() {
