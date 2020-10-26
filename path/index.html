@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-  <title>Path</title>
-  <link rel="stylesheet" href="css/style.css" media="all">
-</head>
-<body>
-  <h1>Hello World!</h1>
-  <p id="param"><b>Query Param: </b></p>
-  <img id="pictureUrl">
-  <p id="userId"><b>userId:</b> </p>
-  <p id="displayName"><b>displayName:</b> </p>
-  <p id="statusMessage"><b>statusMessage:</b> </p>
-  <p id="decodedIDToken"><b>email:</b> </p>
-  <script>
-    // Query Params
-    const queryString = decodeURIComponent(window.location.search);
-    const params = new URLSearchParams(queryString);
-    document.getElementById("param").append(params.get("param"));
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+    />
+    <title>Path</title>
+    <link rel="stylesheet" href="css/style.css" media="all" />
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <p id="param"><b>Query Param: </b></p>
+    <img id="pictureUrl" />
+    <p id="userId"><b>userId:</b></p>
+    <p id="displayName"><b>displayName:</b></p>
+    <p id="statusMessage"><b>statusMessage:</b></p>
+    <p id="decodedIDToken"><b>email:</b></p>
+    <script>
+      // Query Params
+      const queryString = decodeURIComponent(window.location.search)
+      const params = new URLSearchParams(queryString)
+      document.getElementById('param').append(params.get('param'))
+    </script>
+
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+
+    <script>
+      async function main() {
+        await liff.init({ liffId: '1655038107-AXo6xwO3' })
+        if (liff.isLoggedIn()) {
+          getUserProfile()
+        } else {
+          logIn({ redirectUri: 'https://fResult.dev/liff/path' })
+        }
+      }
+
+      async function getUserProfile() {
+        const profile = await liff.getProfile()
+        document.querySelector('#pictureUrl').src = profile.pictureUrl
+        document.querySelector('#userId').append(profile.userId)
+        document.querySelector('#statusMessage').append(profile.statusMessage)
+        document.querySelector('#displayName').append(profile.displayName)
+        document
+          .querySelector('#decodedIDToken')
+          .append(liff.getDecodedIDToken().email)
+      }
+
+      main()
+    </script>
+  </body>
 </html>
