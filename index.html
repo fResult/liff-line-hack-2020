@@ -60,7 +60,14 @@
         { type: 'text', text: 'คร่อกกกกกกก zZzZzZzZ' }
       ]
 
-      function createUniversalLink() {}
+      function createUniversalLink() {
+        const link1 = liff.permanentLink.createUrl()
+        document.getElementById('universalLink1').append(link1)
+
+        liff.permanentLink.setExtraQueryParam('param=9')
+        const link2 = liff.permanentLink.createUrl()
+        document.getElementById('universalLink2').append(link2)
+      }
 
       async function shareMsg() {
         await liff.shareTargetPicker([
@@ -123,14 +130,18 @@
       }
 
       async function getUserProfile() {
-        const profile = await liff.getProfile()
-        document.querySelector('#pictureUrl').src = profile.pictureUrl
-        document.querySelector('#userId').append(profile.userId)
-        document.querySelector('#statusMessage').append(profile.statusMessage)
-        document.querySelector('#displayName').append(profile.displayName)
-        // document
-        //   .querySelector('#decodedIDToken')
-        //   .append(profile.getDecodedIDToken().email)
+        try {
+          const profile = await liff.getProfile()
+          document.querySelector('#pictureUrl').src = profile.pictureUrl
+          document.querySelector('#userId').append(profile.userId)
+          document.querySelector('#statusMessage').append(profile.statusMessage)
+          document.querySelector('#displayName').append(profile.displayName)
+          document
+            .querySelector('#decodedIDToken')
+            .append(profile.getDecodedIDToken().email)
+        } catch (err) {
+          alert('❌ Error: ' + err.message)
+        }
       }
 
       function getEnvironment() {
